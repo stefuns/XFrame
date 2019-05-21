@@ -1,0 +1,118 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    api(deps.support.v4){
+        exclude module: 'support-annotations'
+    }
+    api(deps.support.app_compat){
+        exclude module: 'support-annotations'
+    }
+
+    api deps.support.design
+    api(deps.support.recyclerview){
+        exclude module: 'support-annotations'
+    }
+
+    api deps.support.annotations
+    compileOnly deps.autolayout
+
+    api(deps.butterknife.runtime) {
+        exclude module: 'support-annotations'
+        exclude module: 'support-compat'
+    }
+
+    api deps.rxjava2
+
+    api (deps.rxandroid2){
+        exclude module: 'rxjava'
+    }
+
+    api(deps.rxcache2) {
+        exclude module: 'rxjava'
+        exclude module: 'dagger'
+        exclude module: 'api'
+    }
+    implementation(deps.rxcache_jolyglot_gson) {
+        exclude module: 'gson'
+    }
+
+    api(deps.rxlifecycle2) {
+        exclude module: 'rxjava'
+        exclude module: 'jsr305'
+    }
+
+    api(deps.rxlifecycle2_android) {
+        exclude module: 'support-annotations'
+        exclude module: 'rxjava'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+    }
+
+    api(deps.rxpermissions2) {
+        exclude module: 'rxjava'
+        exclude module: 'support-annotations'
+    }
+
+    api deps.rxerrorhandler2
+
+
+    api(deps.retrofit.runtime) {
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+    }
+
+    api(deps.retrofit.gson) {
+        exclude module: 'gson'
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+        exclude module: 'retrofit'
+    }
+
+    implementation(deps.retrofit.adapter) {
+        exclude module: 'rxjava'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
+    api deps.okhttp3
+    compileOnly deps.glide
+    annotationProcessor(deps.glide_compiler) {
+        exclude module: 'jsr305'
+    }
+
+    compileOnly deps.javax_annotation
+
+    api deps.dagger.runtime
+    annotationProcessor deps.dagger.compiler
+
+    compileOnly deps.androideventbus
+    compileOnly deps.eventbus
+    api deps.gson
+    api deps.timber
+    api deps.gloading
+
+}
+apply from: '../JitPackUpload.gradle'
