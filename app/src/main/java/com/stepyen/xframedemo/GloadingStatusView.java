@@ -1,0 +1,118 @@
+package com.stepyen.xframedemo;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+
+import com.billy.android.loading.Gloading;
+
+/**
+ * date：2019/4/18
+ * author：stepyen
+ * description：
+ */
+public class GloadingStatusView extends FrameLayout {
+    private final Runnable mRetryTask;
+    private View mLoadingView;
+    private View mErrorView;
+    private View mNetErrorView;
+    private View mEmptyView;
+
+    private ImageView mIvLoading;
+
+    private Context mContext;
+    private Animation mAnimation;
+
+    public GloadingStatusView(Context context, Runnable retryTask ) {
+        super(context);
+        this.mContext = context;
+        this.mRetryTask = retryTask;
+    }
+
+    public void setStatus(int status) {
+        removeAllViews();
+        boolean isShow = false;
+        switch (status) {
+            case Gloading.STATUS_LOADING:
+                if (mLoadingView == null) {
+                    mLoadingView = LayoutInflater.from(mContext).inflate(R.layout.view_loading, null);
+                    mIvLoading = (ImageView) mLoadingView.findViewById(R.id.iv_loading);
+//                    mAnimation = AnimationUtils.loadAnimation(mContext, R.anim.anim_round_rotate);
+//                    LinearInterpolator interpolator = new LinearInterpolator(); //匀速加速器
+//                    mAnimation.setInterpolator(interpolator);
+                }
+                // 将 view 从父布局移除会停止动画
+//                mIvLoading.startAnimation(mAnimation);
+                addView(mLoadingView);
+                break;
+            case Gloading.STATUS_LOAD_SUCCESS:
+                isShow = true;
+                break;
+            case Gloading.STATUS_LOAD_FAILED:
+                if (isNetworkConnected(mContext)) {
+                    if (mErrorView == null) {
+                        mErrorView = LayoutInflater.from(mContext).inflate(R.layout.view_error, null);
+                        Button errorBtn = (Button) mErrorView.findViewById(R.id.btn_error);
+                        errorBtn.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (mRetryTask != null) {
+                                    mRetryTask.run();
+                                }
+                            }
+                        });
+                    }
+
+                    addView(mErrorView);
+                }else{
+                    if (mNetErrorView == null) {
+                        mNetErrorView = LayoutInflater.from(mContext).inflate(R.layout.view_net_error, null);
+                        Button netErrorBtn = (Button) mNetErrorView.findViewById(R.id.btn_error);
+                        netErrorBtn.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (mRetryTask != null) {
+                                    mRetryTask.run();
+                                }
+                            }
+                        });
+
+                    }
+                    addView(mNetErrorView);
+                }
+
+                break;
+            case Gloading.STATUS_EMPTY_DATA:
+                if (mEmptyView == null) {
+                    mEmptyView = LayoutInflater.from(mContext).inflate(R.layout.view_empty, null);
+                }
+
+                addView(mEmptyView);
+                break;
+        }
+
+        setVisibility(isShow ? View.GONE:View.VISIBLE);
+    }
+
+    public  Boolean isNetworkConnected(Context context) {
+        try {
+            context = context.getApplicationContext();
+            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (cm != null) {
+                NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+                return networkInfo != null && networkInfo.isConnected();
+            }
+        } catch (Exception ignored) {
+        }
+        return false;
+    }
+
+}
