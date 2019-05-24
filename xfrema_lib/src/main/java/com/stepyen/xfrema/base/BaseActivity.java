@@ -102,33 +102,55 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getLayoutId() != 0) {
-            mRootView = (ViewGroup) LayoutInflater.from(this).inflate(getLayoutId(), null, false);
-
-            TitleBar titleBar = initTitleBar();
-            if (titleBar != null) {
-                LinearLayout linearLayout = new LinearLayout(this);
-                linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-                linearLayout.setOrientation(LinearLayout.VERTICAL);
-                linearLayout.addView(titleBar);
-                mRootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                linearLayout.addView(mRootView);
-                setContentView(linearLayout);
-            }else{
-                setContentView(mRootView);
+        try {
+            int layoutResID = getLayoutId();
+            //如果initView返回0,框架则不会调用setContentView(),当然也不会 Bind ButterKnife
+            if (layoutResID != 0) {
+                setContentView(layoutResID);
+                //绑定到butterknife
+                mUnbinder = ButterKnife.bind(this);
             }
-
-            //绑定到butterknife
-            mUnbinder = ButterKnife.bind(this,mRootView);
+        } catch (Exception e) {
+            if (e instanceof InflateException) throw e;
+            e.printStackTrace();
         }
         initData(savedInstanceState);
+
+
+
+
+
+//        if (getLayoutId() != 0) {
+//            mRootView = (ViewGroup) LayoutInflater.from(this).inflate(getLayoutId(), null, false);
+//
+//            TitleBar titleBar = initTitleBar();
+//            if (titleBar != null) {
+//                LinearLayout linearLayout = new LinearLayout(this);
+//                linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+//                linearLayout.setOrientation(LinearLayout.VERTICAL);
+//                linearLayout.addView(titleBar);
+//                mRootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//                linearLayout.addView(mRootView);
+//                setContentView(linearLayout);
+//            }else{
+//                setContentView(mRootView);
+//            }
+//
+//            //绑定到butterknife
+//            mUnbinder = ButterKnife.bind(this,mRootView);
+//        }
+//        initData(savedInstanceState);
     }
 
-    protected TitleBar initTitleBar() {
-        return TitleUtils.initTitleBarDynamic(this,getTitle(), v -> {
-            finish();
-        });
-    }
+//    protected View getLayoutView() {
+//        return LayoutInflater.from(this).inflate(getLayoutId(), null, false);
+//    }
+//
+//    protected TitleBar initTitleBar() {
+//        return TitleUtils.initTitleBarDynamic(this,getTitle(), v -> {
+//            finish();
+//        });
+//    }
 
 
     @Override
