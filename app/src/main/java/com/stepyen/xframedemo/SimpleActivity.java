@@ -35,7 +35,7 @@ public class SimpleActivity extends SBaseActivity {
             public void run() {
                 showLoadFailed();
             }
-        }, 2000);
+        }, 1000);
     }
 
     protected void initLoadingStatusViewIfNeed() {
@@ -48,5 +48,16 @@ public class SimpleActivity extends SBaseActivity {
                 }
             });
         }
+    }
+
+    @Override
+    protected void onLoadRetry() {
+        showLoading();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showLoadSuccess();
+            }
+        }, 1000);
     }
 }

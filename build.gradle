@@ -12,6 +12,7 @@ buildscript {
 
         classpath 'com.chenenyu:img-optimizer:1.1.1' // 图片压缩
     }
+
 }
 
 allprojects {

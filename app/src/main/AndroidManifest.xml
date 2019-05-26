@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.stepyen.xframedemo">
 
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,6 +29,10 @@
 
         <activity android:name=".SimpleActivity"
             android:label="SimpleActivity"
+            ></activity>
+
+        <activity android:name=".mvp.TestMVPActivity"
+            android:label="测试MVP"
             ></activity>
     </application>
 

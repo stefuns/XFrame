@@ -4,7 +4,7 @@
  **/
 ext.deps = [:]
 def versions = [:]
-versions.android_gradle_plugin = "3.4.0"
+versions.android_gradle_plugin = '3.4.1'
 versions.android_maven_gradle_plugin = "2.0"
 versions.gradle_bintray_plugin = "1.8.0"
 versions.retrolambda = "3.7.0"
@@ -173,9 +173,8 @@ deps.javax_annotation = "javax.annotation:jsr250-api:1.0"
 deps.androideventbus = "org.simple:androideventbus:1.0.5.1"
 deps.eventbus = "org.greenrobot:eventbus:3.1.1"
 deps.gloading = "com.billy.android:gloading:1.0.0"
-
-
-
+deps.progressmanager = "me.jessyan:progressmanager:1.5.0"
+deps.retrofit_url_manager = "me.jessyan:retrofit-url-manager:1.4.0"
 
 ext.deps = deps
 

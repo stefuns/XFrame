@@ -1,9 +1,12 @@
 package com.stepyen.xfrema.base;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.billy.android.loading.Gloading;
 import com.stepyen.xfrema.mvp.IPresenter;
@@ -17,20 +20,34 @@ import com.stepyen.xfrema.widget.actionbar.TitleUtils;
  */
 public abstract class SBaseActivity<P extends IPresenter> extends BaseActivity<P> {
     protected View mContentView;
+
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         ViewGroup contentParent = findViewById(android.R.id.content);
         mContentView = contentParent.getChildAt(0);
         TitleBar titleBar = initTitleBar();
         if (titleBar != null) {
-            contentParent.addView(titleBar, 0);
+            contentParent.removeAllViews();
+
+            LinearLayout linearLayout = new LinearLayout(this);
+            linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            linearLayout.setOrientation(LinearLayout.VERTICAL);
+            linearLayout.addView(titleBar);
+            linearLayout.addView(mContentView);
+
+            contentParent.addView(linearLayout);
         }
 
     }
+
     protected TitleBar initTitleBar() {
-        return TitleUtils.initTitleBarDynamic(this,getTitle(), v -> {
+        return TitleUtils.initTitleBarDynamic(this, getTitle(), v -> {
             finish();
         });
+    }
+
+    public void showMessage(@NonNull String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     protected Gloading.Holder mHolder;

@@ -115,42 +115,8 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
             e.printStackTrace();
         }
         initData(savedInstanceState);
-
-
-
-
-
-//        if (getLayoutId() != 0) {
-//            mRootView = (ViewGroup) LayoutInflater.from(this).inflate(getLayoutId(), null, false);
-//
-//            TitleBar titleBar = initTitleBar();
-//            if (titleBar != null) {
-//                LinearLayout linearLayout = new LinearLayout(this);
-//                linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-//                linearLayout.setOrientation(LinearLayout.VERTICAL);
-//                linearLayout.addView(titleBar);
-//                mRootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-//                linearLayout.addView(mRootView);
-//                setContentView(linearLayout);
-//            }else{
-//                setContentView(mRootView);
-//            }
-//
-//            //绑定到butterknife
-//            mUnbinder = ButterKnife.bind(this,mRootView);
-//        }
-//        initData(savedInstanceState);
     }
 
-//    protected View getLayoutView() {
-//        return LayoutInflater.from(this).inflate(getLayoutId(), null, false);
-//    }
-//
-//    protected TitleBar initTitleBar() {
-//        return TitleUtils.initTitleBarDynamic(this,getTitle(), v -> {
-//            finish();
-//        });
-//    }
 
 
     @Override
