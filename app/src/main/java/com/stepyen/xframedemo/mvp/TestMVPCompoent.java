@@ -1,7 +1,7 @@
 package com.stepyen.xframedemo.mvp;
 
-import com.stepyen.xfrema.di.component.AppComponent;
-import com.stepyen.xfrema.di.scope.ActivityScope;
+import com.stepyen.xframe.di.component.AppComponent;
+import com.stepyen.xframe.di.scope.ActivityScope;
 
 import dagger.BindsInstance;
 import dagger.Component;

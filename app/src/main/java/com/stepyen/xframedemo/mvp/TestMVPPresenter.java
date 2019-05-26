@@ -4,17 +4,14 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.OnLifecycleEvent;
 
 import com.stepyen.xframedemo.net.BaseResponse;
-import com.stepyen.xframedemo.net.ExpertBaseRespoen;
 import com.stepyen.xframedemo.net.entity.ExpertCategory;
-import com.stepyen.xfrema.mvp.BasePresenter;
-import com.stepyen.xfrema.mvp.IModel;
-import com.stepyen.xfrema.utils.RxLifecycleUtils;
+import com.stepyen.xframe.mvp.BasePresenter;
+import com.stepyen.xframe.utils.RxLifecycleUtils;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;

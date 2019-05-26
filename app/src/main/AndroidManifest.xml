@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name="com.stepyen.xfrema.base.BaseApplication"
+        android:name="com.stepyen.xframe.base.BaseApplication"
         >
 
         <!-- Arms 配置 -->

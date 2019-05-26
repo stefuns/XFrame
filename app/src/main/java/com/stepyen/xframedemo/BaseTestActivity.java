@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.stepyen.xfrema.utils.ArmsUtils;
+import com.stepyen.xframe.utils.ArmsUtils;
 
 import butterknife.ButterKnife;
 

@@ -3,19 +3,16 @@ package com.stepyen.xframedemo.mvp;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.stepyen.xframedemo.R;
 import com.stepyen.xframedemo.net.entity.ExpertCategory;
-import com.stepyen.xfrema.base.SBaseActivity;
-import com.stepyen.xfrema.di.component.AppComponent;
+import com.stepyen.xframe.base.SBaseActivity;
+import com.stepyen.xframe.di.component.AppComponent;
 
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * date：2019-05-25

@@ -6,11 +6,10 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 
 import com.stepyen.xframedemo.net.Api;
-import com.stepyen.xfrema.BuildConfig;
-import com.stepyen.xfrema.base.delegate.AppLifecycles;
-import com.stepyen.xfrema.di.module.GlobalConfigModule;
+import com.stepyen.xframe.base.delegate.AppLifecycles;
+import com.stepyen.xframe.di.module.GlobalConfigModule;
 
-import com.stepyen.xfrema.integration.ConfigModule;
+import com.stepyen.xframe.integration.ConfigModule;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

@@ -1,10 +1,9 @@
 package com.stepyen.xframedemo.mvp;
 
 import com.stepyen.xframedemo.net.BaseResponse;
-import com.stepyen.xframedemo.net.ExpertBaseRespoen;
 import com.stepyen.xframedemo.net.entity.ExpertCategory;
-import com.stepyen.xfrema.mvp.ILoadView;
-import com.stepyen.xfrema.mvp.IModel;
+import com.stepyen.xframe.mvp.ILoadView;
+import com.stepyen.xframe.mvp.IModel;
 
 import java.util.List;
 

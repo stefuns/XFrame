@@ -2,10 +2,9 @@ package com.stepyen.xframedemo.mvp;
 
 import com.stepyen.xframedemo.net.ApiManage;
 import com.stepyen.xframedemo.net.BaseResponse;
-import com.stepyen.xframedemo.net.ExpertBaseRespoen;
 import com.stepyen.xframedemo.net.entity.ExpertCategory;
-import com.stepyen.xfrema.integration.IRepositoryManager;
-import com.stepyen.xfrema.mvp.BaseModel;
+import com.stepyen.xframe.integration.IRepositoryManager;
+import com.stepyen.xframe.mvp.BaseModel;
 
 import java.util.List;
 

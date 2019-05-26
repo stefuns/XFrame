@@ -6,10 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.billy.android.loading.Gloading;
-import com.stepyen.xfrema.base.BaseActivity;
-import com.stepyen.xfrema.base.BaseLoadActivity;
-import com.stepyen.xfrema.base.SBaseActivity;
-import com.stepyen.xfrema.di.component.AppComponent;
+import com.stepyen.xframe.base.SBaseActivity;
+import com.stepyen.xframe.di.component.AppComponent;
 /**
  * date：2019/5/22
  * author：stepyen

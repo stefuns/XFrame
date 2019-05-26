@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import com.billy.android.loading.Gloading;
 import com.stepyen.xframedemo.BuildConfig;
 import com.stepyen.xframedemo.GlobalAdapter;
-import com.stepyen.xfrema.base.delegate.AppLifecycles;
+import com.stepyen.xframe.base.delegate.AppLifecycles;
 
 /**
  * date：2019/5/22

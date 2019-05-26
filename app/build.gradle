@@ -47,7 +47,7 @@ dependencies {
     implementation deps.progressmanager
     implementation deps.retrofit_url_manager
 
-    implementation project(path: ':xfrema_lib')
+    implementation project(path: ':xframe_lib')
 
 
 }
