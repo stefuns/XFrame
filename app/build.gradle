@@ -47,7 +47,8 @@ dependencies {
     implementation deps.progressmanager
     implementation deps.retrofit_url_manager
 
-    implementation project(path: ':xframe_lib')
+//    implementation project(path: ':xframe_lib')
+    implementation 'com.github.stepyen:XFrame:1.0.1'
 
 
 }

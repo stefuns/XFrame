@@ -32,6 +32,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     public static final int CENTER_CENTER = 0;
     public static final int CENTER_LEFT = 1;
     public static final int CENTER_RIGHT = 2;
+
     /**
      * 文字默认白色
      */
@@ -53,6 +54,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
      * 屏幕宽
      */
     private int mScreenWidth;
+
     /**
      * 标题栏的高度
      */
@@ -143,6 +145,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     }
 
     private void initView(Context context) {
+
         mLeftText = new TextView(context);
         mCenterLayout = new LinearLayout(context);
         mRightLayout = new LinearLayout(context);

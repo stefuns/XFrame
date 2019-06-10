@@ -31,7 +31,6 @@ public class GlobalConfiguration implements ConfigModule {
 
         builder
                 .baseurl(Api.EXPERT_BASE_URL)
-
                 .okhttpConfiguration((context1, okhttpBuilder) -> {//这里可以自己自定义配置 Okhttp 的参数
 //                    okhttpBuilder.sslSocketFactory(); //支持 Https, 详情请百度
                     okhttpBuilder.writeTimeout(10, TimeUnit.SECONDS);
