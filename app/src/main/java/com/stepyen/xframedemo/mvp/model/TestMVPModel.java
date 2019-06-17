@@ -1,8 +1,9 @@
-package com.stepyen.xframedemo.mvp;
+package com.stepyen.xframedemo.mvp.model;
 
-import com.stepyen.xframedemo.net.ApiManage;
-import com.stepyen.xframedemo.net.BaseResponse;
-import com.stepyen.xframedemo.net.entity.ExpertCategory;
+import com.stepyen.xframedemo.mvp.contract.TestMVPContract;
+import com.stepyen.xframedemo.mvp.model.net.ApiManage;
+import com.stepyen.xframedemo.mvp.model.net.BaseResponse;
+import com.stepyen.xframedemo.mvp.model.net.entity.ExpertCategory;
 import com.stepyen.xframe.integration.IRepositoryManager;
 import com.stepyen.xframe.mvp.BaseModel;
 

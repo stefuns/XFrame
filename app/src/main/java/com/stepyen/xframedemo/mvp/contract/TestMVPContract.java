@@ -1,7 +1,7 @@
-package com.stepyen.xframedemo.mvp;
+package com.stepyen.xframedemo.mvp.contract;
 
-import com.stepyen.xframedemo.net.BaseResponse;
-import com.stepyen.xframedemo.net.entity.ExpertCategory;
+import com.stepyen.xframedemo.mvp.model.net.BaseResponse;
+import com.stepyen.xframedemo.mvp.model.net.entity.ExpertCategory;
 import com.stepyen.xframe.mvp.ILoadView;
 import com.stepyen.xframe.mvp.IModel;
 

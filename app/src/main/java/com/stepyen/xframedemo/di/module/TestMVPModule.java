@@ -1,4 +1,7 @@
-package com.stepyen.xframedemo.mvp;
+package com.stepyen.xframedemo.di.module;
+
+import com.stepyen.xframedemo.mvp.contract.TestMVPContract;
+import com.stepyen.xframedemo.mvp.model.TestMVPModel;
 
 import dagger.Binds;
 import dagger.Module;

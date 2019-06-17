@@ -1,10 +1,8 @@
 package com.stepyen.xframedemo;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
-import com.stepyen.xframedemo.mvp.TestMVPActivity;
+import com.stepyen.xframedemo.mvp.ui.activity.TestMVPActivity;
 
 public class MainActivity extends BaseTestActivity {
 

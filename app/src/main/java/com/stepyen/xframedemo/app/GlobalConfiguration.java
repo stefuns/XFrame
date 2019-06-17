@@ -5,7 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 
-import com.stepyen.xframedemo.net.Api;
+import com.stepyen.xframedemo.mvp.model.net.Api;
 import com.stepyen.xframe.base.delegate.AppLifecycles;
 import com.stepyen.xframe.di.module.GlobalConfigModule;
 

@@ -1,7 +1,10 @@
-package com.stepyen.xframedemo.mvp;
+package com.stepyen.xframedemo.di.component;
 
 import com.stepyen.xframe.di.component.AppComponent;
 import com.stepyen.xframe.di.scope.ActivityScope;
+import com.stepyen.xframedemo.di.module.TestMVPModule;
+import com.stepyen.xframedemo.mvp.contract.TestMVPContract;
+import com.stepyen.xframedemo.mvp.ui.activity.TestMVPActivity;
 
 import dagger.BindsInstance;
 import dagger.Component;

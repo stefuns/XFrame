@@ -46,12 +46,12 @@ public abstract class BaseHolder<T> extends RecyclerView.ViewHolder implements V
     }
 
     /**
-     * 设置数据
+     * 绑定数据
      *
      * @param data     数据
      * @param position 在 RecyclerView 中的位置
      */
-    public abstract void setData(@NonNull T data, int position);
+    public abstract void bindData(@NonNull T data, int position);
 
     /**
      * 在 Activity 的 onDestroy 中使用 {@link DefaultAdapter#releaseAllHolder(RecyclerView)} 方法 (super.onDestroy() 之前)

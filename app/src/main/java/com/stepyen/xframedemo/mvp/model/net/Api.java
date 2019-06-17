@@ -1,4 +1,4 @@
-package com.stepyen.xframedemo.net;
+package com.stepyen.xframedemo.mvp.model.net;
 
 /**
  * date：2019-05-25

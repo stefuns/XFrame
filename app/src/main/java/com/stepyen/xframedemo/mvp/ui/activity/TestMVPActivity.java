@@ -1,4 +1,4 @@
-package com.stepyen.xframedemo.mvp;
+package com.stepyen.xframedemo.mvp.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -6,7 +6,10 @@ import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.stepyen.xframedemo.R;
-import com.stepyen.xframedemo.net.entity.ExpertCategory;
+import com.stepyen.xframedemo.mvp.DaggerTestMVPCompoent;
+import com.stepyen.xframedemo.mvp.presenter.TestMVPPresenter;
+import com.stepyen.xframedemo.mvp.contract.TestMVPContract;
+import com.stepyen.xframedemo.mvp.model.net.entity.ExpertCategory;
 import com.stepyen.xframe.base.SBaseActivity;
 import com.stepyen.xframe.di.component.AppComponent;
 

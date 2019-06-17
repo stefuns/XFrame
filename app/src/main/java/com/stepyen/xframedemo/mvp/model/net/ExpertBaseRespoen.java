@@ -1,4 +1,4 @@
-package com.stepyen.xframedemo.net;
+package com.stepyen.xframedemo.mvp.model.net;
 
 import android.text.TextUtils;
 

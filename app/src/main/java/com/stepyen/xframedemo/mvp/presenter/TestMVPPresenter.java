@@ -1,10 +1,11 @@
-package com.stepyen.xframedemo.mvp;
+package com.stepyen.xframedemo.mvp.presenter;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.OnLifecycleEvent;
 
-import com.stepyen.xframedemo.net.BaseResponse;
-import com.stepyen.xframedemo.net.entity.ExpertCategory;
+import com.stepyen.xframedemo.mvp.contract.TestMVPContract;
+import com.stepyen.xframedemo.mvp.model.net.BaseResponse;
+import com.stepyen.xframedemo.mvp.model.net.entity.ExpertCategory;
 import com.stepyen.xframe.mvp.BasePresenter;
 import com.stepyen.xframe.utils.RxLifecycleUtils;
 

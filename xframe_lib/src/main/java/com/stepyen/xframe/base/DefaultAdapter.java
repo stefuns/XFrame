@@ -43,11 +43,10 @@ public abstract class DefaultAdapter<T> extends RecyclerView.Adapter<BaseHolder<
     }
 
     /**
-     * 创建 {@link BaseHolder}
+     * 创建 BaseHolder
      *
      * @param parent 父容器
      * @param viewType 布局类型
-     * @return {@link BaseHolder}
      */
     @Override
     public BaseHolder<T> onCreateViewHolder(ViewGroup parent, final int viewType) {
@@ -68,12 +67,11 @@ public abstract class DefaultAdapter<T> extends RecyclerView.Adapter<BaseHolder<
     /**
      * 绑定数据
      *
-     * @param holder   {@link BaseHolder}
      * @param position 在 RecyclerView 中的位置
      */
     @Override
     public void onBindViewHolder(BaseHolder<T> holder, int position) {
-        holder.setData(mInfos.get(position), position);
+        holder.bindData(mInfos.get(position), position);
     }
 
     /**
@@ -106,11 +104,11 @@ public abstract class DefaultAdapter<T> extends RecyclerView.Adapter<BaseHolder<
     }
 
     /**
-     * 让子类实现用以提供 {@link BaseHolder}
+     * 让子类实现用以提供 BaseHolder
      *
      * @param v        用于展示的 {@link View}
      * @param viewType 布局类型
-     * @return {@link BaseHolder}
+     * @return BaseHolder
      */
     @NonNull
     public abstract BaseHolder<T> getHolder(@NonNull View v, int viewType);
@@ -124,7 +122,7 @@ public abstract class DefaultAdapter<T> extends RecyclerView.Adapter<BaseHolder<
     public abstract int getLayoutId(int viewType);
 
     /**
-     * 遍历所有 {@link BaseHolder}, 释放他们需要释放的资源
+     * 遍历所有 BaseHolder, 释放他们需要释放的资源
      *
      * @param recyclerView {@link RecyclerView}
      */

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stepyen.xframedemo.net;
+package com.stepyen.xframedemo.mvp.model.net;
 
 import java.io.Serializable;
 

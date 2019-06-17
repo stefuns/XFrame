@@ -1,6 +1,6 @@
-package com.stepyen.xframedemo.net;
+package com.stepyen.xframedemo.mvp.model.net;
 
-import com.stepyen.xframedemo.net.entity.ExpertCategory;
+import com.stepyen.xframedemo.mvp.model.net.entity.ExpertCategory;
 
 import java.util.List;
 
