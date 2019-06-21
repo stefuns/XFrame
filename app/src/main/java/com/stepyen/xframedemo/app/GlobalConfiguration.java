@@ -5,15 +5,15 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 
+import com.stepyen.xframe.http.imageloader.glide.GlideImageLoaderStrategy;
+import com.stepyen.xframe.http.log.RequestInterceptor;
+import com.stepyen.xframedemo.BuildConfig;
 import com.stepyen.xframedemo.mvp.model.net.Api;
 import com.stepyen.xframe.base.delegate.AppLifecycles;
 import com.stepyen.xframe.di.module.GlobalConfigModule;
-
 import com.stepyen.xframe.integration.ConfigModule;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import me.jessyan.progressmanager.ProgressManager;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 
@@ -25,12 +25,14 @@ import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 public class GlobalConfiguration implements ConfigModule {
     @Override
     public void applyOptions(@NonNull Context context, @NonNull GlobalConfigModule.Builder builder) {
-//        if (!BuildConfig.LOG_DEBUG) { //Release 时, 让框架不再打印 Http 请求和响应的信息
-//            builder.printHttpLogLevel(RequestInterceptor.Level.NONE);
-//        }
+        //Release 时, 让框架不再打印 Http 请求和响应的信息
+        if (!BuildConfig.LOG_DEBUG) {
+            builder.printHttpLogLevel(RequestInterceptor.Level.NONE);
+        }
 
         builder
                 .baseurl(Api.EXPERT_BASE_URL)
+                .imageLoaderStrategy(new GlideImageLoaderStrategy())
                 .okhttpConfiguration((context1, okhttpBuilder) -> {//这里可以自己自定义配置 Okhttp 的参数
 //                    okhttpBuilder.sslSocketFactory(); //支持 Https, 详情请百度
                     okhttpBuilder.writeTimeout(10, TimeUnit.SECONDS);

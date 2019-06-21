@@ -40,15 +40,9 @@ import java.io.InputStream;
 
 /**
  * ================================================
- * {@link AppGlideModule} 的默认实现类
  * 用于配置缓存文件夹,切换图片请求框架等操作
- * <p>
- * Created by JessYan on 16/4/15.
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
  */
-@GlideModule(glideName = "GlideArms")
+@GlideModule
 public class GlideConfiguration extends AppGlideModule {
     public static final int IMAGE_DISK_CACHE_MAX_SIZE = 100 * 1024 * 1024;//图片缓存文件最大值为100Mb
 
@@ -59,6 +53,7 @@ public class GlideConfiguration extends AppGlideModule {
             @Override
             public DiskCache build() {
                 // Careful: the external cache directory doesn't enforce permissions
+                // 指定磁盘存储路径及大小
                 return DiskLruCacheWrapper.create(DataHelper.makeDirs(new File(appComponent.cacheFile(), "Glide")), IMAGE_DISK_CACHE_MAX_SIZE);
             }
         });

@@ -19,4 +19,3 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
-# 混淆规则在 XFrame_lib moudule 下的 proguard-rules.pro 中,

@@ -1,14 +1,10 @@
-package com.stepyen.xframedemo;
+package com.stepyen.xframedemo.adapter;
 
-import android.graphics.Color;
-import android.support.v4.media.session.MediaSessionCompat;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.billy.android.loading.Gloading;
+import com.stepyen.xframedemo.R;
+import com.stepyen.xframedemo.adapter.GlobalAdapter;
 
 /**
  * date：2019/5/22

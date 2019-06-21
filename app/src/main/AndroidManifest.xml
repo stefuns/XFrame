@@ -17,7 +17,7 @@
             android:name="com.stepyen.xframedemo.app.GlobalConfiguration"
             android:value="ConfigModule"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".mvp.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -25,8 +25,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SimpleActivity"
+            android:name=".mvp.ui.activity.SimpleActivity"
             android:label="SimpleActivity"/>
+        <activity
+            android:name=".mvp.ui.activity.TestImageActivity"
+            android:label="TestImageActivity"/>
+
+        <activity
+            android:name=".mvp.ui.activity.TestMVPActivity"
+            android:label="TestMVPActivity"/>
+
+
     </application>
 
 </manifest>

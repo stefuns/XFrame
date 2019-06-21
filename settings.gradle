@@ -1,1 +1,1 @@
-include ':app', ':xframe_lib'
+include ':app', ':xframe_lib', ':xframe_glide'

@@ -4,7 +4,7 @@ android {
     compileSdkVersion build_versions.target_sdk
     buildToolsVersion build_versions.build_tools
     defaultConfig {
-        applicationId "com.stepyen.xframe"
+        applicationId "com.stepyen.xframedemo"
         minSdkVersion 19
         targetSdkVersion build_versions.target_sdk
         versionCode 1
@@ -47,8 +47,9 @@ dependencies {
     implementation deps.progressmanager
     implementation deps.retrofit_url_manager
 
-//    implementation project(path: ':xframe_lib')
-    implementation 'com.github.stepyen:XFrame:1.0.1'
+    implementation project(path: ':xframe_lib')
+    implementation project(path: ':xframe_glide')
+//    implementation 'com.github.stepyen:XFrame:1.0.1'
 
 
 }

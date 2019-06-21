@@ -1,4 +1,4 @@
-package com.stepyen.xframedemo;
+package com.stepyen.xframedemo.adapter;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.billy.android.loading.Gloading;
+import com.stepyen.xframedemo.GloadingStatusView;
 
 /**
  * date：2019/4/15

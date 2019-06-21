@@ -1,13 +1,17 @@
-package com.stepyen.xframedemo;
+package com.stepyen.xframedemo.mvp.ui.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.billy.android.loading.Gloading;
 import com.stepyen.xframe.base.SBaseActivity;
 import com.stepyen.xframe.di.component.AppComponent;
+import com.stepyen.xframedemo.adapter.OtherGloadingAdapter;
+import com.stepyen.xframedemo.R;
+
 /**
  * date：2019/5/22
  * author：stepyen
@@ -35,6 +39,12 @@ public class SimpleActivity extends SBaseActivity {
             }
         }, 1000);
     }
+
+    @Override
+    public void onViewClick(View view) {
+
+    }
+
 
     protected void initLoadingStatusViewIfNeed() {
         if (mHolder == null) {

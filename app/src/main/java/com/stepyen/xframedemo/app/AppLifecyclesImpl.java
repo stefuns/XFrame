@@ -3,10 +3,9 @@ package com.stepyen.xframedemo.app;
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
-
 import com.billy.android.loading.Gloading;
 import com.stepyen.xframedemo.BuildConfig;
-import com.stepyen.xframedemo.GlobalAdapter;
+import com.stepyen.xframedemo.adapter.GlobalAdapter;
 import com.stepyen.xframe.base.delegate.AppLifecycles;
 
 /**

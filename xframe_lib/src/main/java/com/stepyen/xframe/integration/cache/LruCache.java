@@ -32,10 +32,6 @@ import java.util.Set;
  *
  * @see GlobalConfigModule#provideCacheFactory(Application)
  * @see Cache
- * Created by JessYan on 25/09/2017 16:57
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
  */
 public class LruCache<K, V> implements Cache<K, V> {
     private final LinkedHashMap<K, V> cache = new LinkedHashMap<>(100, 0.75f, true);
