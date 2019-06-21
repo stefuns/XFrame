@@ -16,5 +16,10 @@ allprojects {
 
 2.添加依赖
 ```
-  implementation 'com.github.stepyen:XFrame:1.0.1'
+// 基础框架
+implementation 'com.github.stepyen.XFrame:xframe_lib:1.0.2'
+
+// glide 图片实现策略  
+implementation 'com.github.stepyen.XFrame:xframe_glide:1.0.2'
+
 ```
