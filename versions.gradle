@@ -187,9 +187,9 @@ ext.build_versions = build_versions
 
 def app_release = [:]
 app_release.storeFile = "../keystores/android.keystore"
-app_release.storePassword = "xuexiang"
+app_release.storePassword = "stepyen"
 app_release.keyAlias = "android.keystore"
-app_release.keyPassword = "xuexiang"
+app_release.keyPassword = "stepyen"
 
 ext.app_release = app_release
 
