@@ -14,12 +14,14 @@ allprojects {
 
 ```
 
-2.添加依赖
+2.添加依赖  
+
+具体最新版本,请查看release中
 ```
 // 基础框架
-implementation 'com.github.stepyen.XFrame:xframe_lib:1.0.2'
+implementation 'com.github.stepyen.XFrame:xframe_lib:1.0.3'
 
 // glide 图片实现策略  
-implementation 'com.github.stepyen.XFrame:xframe_glide:1.0.2'
+implementation 'com.github.stepyen.XFrame:xframe_glide:1.0.3'
 
 ```
