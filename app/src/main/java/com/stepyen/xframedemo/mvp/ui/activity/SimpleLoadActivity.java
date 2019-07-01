@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.billy.android.loading.Gloading;
-import com.stepyen.xframe.base.SBaseActivity;
+import com.stepyen.xframe.base.BaseLoadActivity;
 import com.stepyen.xframe.di.component.AppComponent;
 import com.stepyen.xframedemo.adapter.OtherGloadingAdapter;
 import com.stepyen.xframedemo.R;
@@ -17,7 +17,7 @@ import com.stepyen.xframedemo.R;
  * author：stepyen
  * description：
  */
-public class SimpleActivity extends SBaseActivity {
+public class SimpleLoadActivity extends BaseLoadActivity {
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
 

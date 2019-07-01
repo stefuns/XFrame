@@ -6,12 +6,12 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
+import com.stepyen.xframe.base.BaseLoadActivity;
 import com.stepyen.xframedemo.R;
 import com.stepyen.xframedemo.di.component.DaggerTestMVPCompoent;
 import com.stepyen.xframedemo.mvp.presenter.TestMVPPresenter;
 import com.stepyen.xframedemo.mvp.contract.TestMVPContract;
 import com.stepyen.xframedemo.mvp.model.net.entity.ExpertCategory;
-import com.stepyen.xframe.base.SBaseActivity;
 import com.stepyen.xframe.di.component.AppComponent;
 
 import java.util.List;
@@ -23,7 +23,7 @@ import butterknife.BindView;
  * author：stepyen
  * description：
  */
-public class TestMVPActivity extends SBaseActivity<TestMVPPresenter> implements TestMVPContract.View {
+public class TestMVPLoadActivity extends BaseLoadActivity<TestMVPPresenter> implements TestMVPContract.View {
 
 
     @BindView(R.id.tv_mvp)

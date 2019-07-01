@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.billy.android.loading.Gloading;
+import com.stepyen.xframe.di.component.AppComponent;
+import com.stepyen.xframe.mvp.IView;
 import com.stepyen.xframe.widget.actionbar.TitleBar;
 import com.stepyen.xframe.widget.actionbar.TitleUtils;
 import com.stepyen.xframe.mvp.IPresenter;
@@ -18,9 +20,9 @@ import com.stepyen.xframe.mvp.IPresenter;
  * author：stepyen
  * description：
  */
-public abstract class SBaseActivity<P extends IPresenter> extends BaseActivity<P> {
+public abstract class BaseLoadActivity<P extends IPresenter> extends BaseActivity<P>   {
     protected View mContentView;
-
+    protected Gloading.Holder mHolder;
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         ViewGroup contentParent = findViewById(android.R.id.content);
@@ -40,6 +42,11 @@ public abstract class SBaseActivity<P extends IPresenter> extends BaseActivity<P
 
     }
 
+    @Override
+    public void onViewClick(View view) {
+
+    }
+
     protected TitleBar initTitleBar() {
         return TitleUtils.initTitleBarDynamic(this, getTitle(), v -> {
             finish();
@@ -50,7 +57,6 @@ public abstract class SBaseActivity<P extends IPresenter> extends BaseActivity<P
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    protected Gloading.Holder mHolder;
 
     protected void initLoadingStatusViewIfNeed() {
         if (mHolder == null) {

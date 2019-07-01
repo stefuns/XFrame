@@ -33,12 +33,45 @@ import static com.stepyen.xframe.utils.Preconditions.checkNotNull;
  */
 public interface IView {
 
-
+    /**
+     * 显示加载对话框
+     */
     default void showLoadDialog() {
 
     }
 
+    /**
+     * 隐藏加载对话框
+     */
     default void dismissLoadDialog() {
+
+    }
+
+    /**
+     * 显示加载视图
+     */
+    default void showLoading() {
+
+    }
+
+    /**
+     * 显示成功视图
+     */
+    default void showLoadSuccess() {
+
+    }
+
+    /**
+     * 显示失败视图
+     */
+    default void showLoadFailed() {
+
+    }
+
+    /**
+     * 显示空视图
+     */
+    default void showEmpty() {
 
     }
 

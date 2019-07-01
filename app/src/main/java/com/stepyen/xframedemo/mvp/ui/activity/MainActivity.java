@@ -8,16 +8,22 @@ public class MainActivity extends BaseTestActivity {
 
     @Override
     public void initView() {
-        addView("示范加载视图，特殊的错误页面", v->{
-            startActivity(new Intent(this, SimpleActivity.class));
+
+
+        addView("简单页面", v->{
+            startActivity(new Intent(this, TestMVPLoadActivity.class));
+        });
+        addView("嵌入Fragment", v->{
+            startActivity(new Intent(this, TestFragmentActivity.class));
         });
 
-        addView("测试MVP", v->{
-            startActivity(new Intent(this, TestMVPActivity.class));
+        addView("页面指定错误页面", v->{
+            startActivity(new Intent(this, SimpleLoadActivity.class));
         });
-
         addView("测试图片框架Glide", v->{
-            startActivity(new Intent(this, TestImageActivity.class));
+            startActivity(new Intent(this, TestImageLoadActivity.class));
         });
+
+
     }
 }

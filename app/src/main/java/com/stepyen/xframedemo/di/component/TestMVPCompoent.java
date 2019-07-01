@@ -4,7 +4,7 @@ import com.stepyen.xframe.di.component.AppComponent;
 import com.stepyen.xframe.di.scope.ActivityScope;
 import com.stepyen.xframedemo.di.module.TestMVPModule;
 import com.stepyen.xframedemo.mvp.contract.TestMVPContract;
-import com.stepyen.xframedemo.mvp.ui.activity.TestMVPActivity;
+import com.stepyen.xframedemo.mvp.ui.activity.TestMVPLoadActivity;
 
 import dagger.BindsInstance;
 import dagger.Component;
@@ -17,7 +17,7 @@ import dagger.Component;
 @ActivityScope
 @Component(modules = TestMVPModule.class, dependencies = AppComponent.class)
 public interface TestMVPCompoent {
-    void inject(TestMVPActivity activity);
+    void inject(TestMVPLoadActivity activity);
     @Component.Builder
     interface Builder {
         @BindsInstance

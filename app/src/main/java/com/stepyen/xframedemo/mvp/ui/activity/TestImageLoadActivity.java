@@ -6,9 +6,8 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.stepyen.xframe.base.SBaseActivity;
+import com.stepyen.xframe.base.BaseLoadActivity;
 import com.stepyen.xframe.di.component.AppComponent;
-import com.stepyen.xframe.http.imageloader.ImageConfig;
 import com.stepyen.xframe.http.imageloader.ImageLoader;
 import com.stepyen.xframe.http.imageloader.glide.ImageConfigImpl;
 import com.stepyen.xframe.utils.ArmsUtils;
@@ -22,7 +21,7 @@ import butterknife.BindView;
  * author：stepyen
  * description：测试图片glide
  */
-public class TestImageActivity extends SBaseActivity {
+public class TestImageLoadActivity extends BaseLoadActivity {
 
     @BindView(R.id.iv_glide_original)
     ImageView mIvGlideOriginal;
