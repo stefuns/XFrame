@@ -57,7 +57,10 @@ public abstract class BaseLoadFragment<P extends IPresenter> extends BaseFragmen
         return "";
     }
 
+    @Override
+    public void onViewClick(View view) {
 
+    }
     protected void initLoadingStatusViewIfNeed() {
         if (mHolder == null) {
             //bind status view to activity root view by default

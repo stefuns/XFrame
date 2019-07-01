@@ -30,16 +30,12 @@
         <activity
             android:name=".mvp.ui.activity.TestImageLoadActivity"
             android:label="测试图片框架Glide"/>
-
         <activity
             android:name=".mvp.ui.activity.TestMVPLoadActivity"
             android:label="简单页面"/>
-
         <activity
             android:name=".mvp.ui.activity.TestFragmentActivity"
             android:label="嵌入Fragment"/>
-
-
     </application>
 
 </manifest>

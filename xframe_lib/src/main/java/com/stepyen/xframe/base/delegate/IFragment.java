@@ -30,6 +30,8 @@ import com.stepyen.xframe.di.component.AppComponent;
 import com.stepyen.xframe.integration.cache.Cache;
 import com.stepyen.xframe.integration.cache.LruCache;
 
+import butterknife.OnClick;
+
 /**
  * ================================================
  * 框架要求框架中的每个 {@link Fragment} 都需要实现此类,以满足规范
@@ -127,4 +129,12 @@ public interface IFragment {
      * @param data 当不需要参数时 {@code data} 可以为 {@code null}
      */
     void setData(@Nullable Object data);
+    /**
+     * view的点击事件
+     * butterknife绑定的点击事件统一写在这里
+     * 添加注解如： @OnClick(R.id.btn1,R.id.btn2)
+     * @param view
+     */
+    @OnClick()
+    void onViewClick(View view);
 }

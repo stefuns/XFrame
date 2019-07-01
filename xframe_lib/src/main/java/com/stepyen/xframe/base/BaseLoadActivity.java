@@ -41,12 +41,10 @@ public abstract class BaseLoadActivity<P extends IPresenter> extends BaseActivit
         }
 
     }
-
     @Override
     public void onViewClick(View view) {
 
     }
-
     protected TitleBar initTitleBar() {
         return TitleUtils.initTitleBarDynamic(this, getTitle(), v -> {
             finish();
