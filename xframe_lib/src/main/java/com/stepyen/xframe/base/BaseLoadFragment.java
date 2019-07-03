@@ -41,11 +41,25 @@ public abstract class BaseLoadFragment<P extends IPresenter> extends BaseFragmen
             linearLayout.addView(titleBar);
         }
 
-        linearLayout.addView(mView);
+        if (mView != null) {
+            linearLayout.addView(mView);
+        }
 
         mUnbinder = ButterKnife.bind(this, linearLayout);
+
         return linearLayout;
     }
+
+    @Override
+    public void initData(@Nullable Bundle savedInstanceState) {
+        onLoad();
+    }
+
+    /**
+     * 一开始加载的数据放在这个方法，便于重试时，再次调用
+     */
+    public abstract void onLoad();
+
 
     protected TitleBar initTitleBar() {
         return TitleUtils.initTitleBarDynamic(getContext(), getTitle(), v -> {
@@ -75,6 +89,8 @@ public abstract class BaseLoadFragment<P extends IPresenter> extends BaseFragmen
 
     protected void onLoadRetry() {
         // override this method in subclass to do retry task
+        showLoadFailed();
+        onLoad();
     }
 
     public void showLoading() {

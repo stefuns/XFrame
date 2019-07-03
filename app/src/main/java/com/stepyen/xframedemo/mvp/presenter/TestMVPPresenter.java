@@ -33,10 +33,6 @@ public class TestMVPPresenter extends BasePresenter<TestMVPContract.Model, TestM
         super(model,view);
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    void onCreate() {
-        getExpertCategory();
-    }
 
     public void getExpertCategory() {
         mRootView.showLoading();
@@ -54,6 +50,7 @@ public class TestMVPPresenter extends BasePresenter<TestMVPContract.Model, TestM
                                 if (response != null && response.isSuccess()) {
                                     mRootView.showLoadSuccess();
                                     mRootView.onShowExpertCategory(response.data);
+
                                 }else{
                                     mRootView.showLoadFailed();
                                 }
@@ -62,9 +59,5 @@ public class TestMVPPresenter extends BasePresenter<TestMVPContract.Model, TestM
                 ;
             }
         }, 1000);
-
-
-
-
     }
 }

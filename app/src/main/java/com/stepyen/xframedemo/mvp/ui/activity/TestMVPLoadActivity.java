@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.stepyen.xframe.base.BaseLoadActivity;
+import com.stepyen.xframe.widget.actionbar.TitleBar;
 import com.stepyen.xframedemo.R;
 import com.stepyen.xframedemo.di.component.DaggerTestMVPCompoent;
 import com.stepyen.xframedemo.mvp.presenter.TestMVPPresenter;
@@ -38,6 +39,8 @@ public class TestMVPLoadActivity extends BaseLoadActivity<TestMVPPresenter> impl
                 .inject(this);
     }
 
+
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_test_mvp;
@@ -47,6 +50,12 @@ public class TestMVPLoadActivity extends BaseLoadActivity<TestMVPPresenter> impl
     public void initData(@Nullable Bundle savedInstanceState) {
         super.initData(savedInstanceState);
     }
+
+    @Override
+    public void onLoad() {
+        mPresenter.getExpertCategory();
+    }
+
 
     @Override
     public void onViewClick(View view) {

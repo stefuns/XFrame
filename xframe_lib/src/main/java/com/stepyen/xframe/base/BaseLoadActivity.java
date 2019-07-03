@@ -20,31 +20,47 @@ import com.stepyen.xframe.mvp.IPresenter;
  * author：stepyen
  * description：
  */
-public abstract class BaseLoadActivity<P extends IPresenter> extends BaseActivity<P>   {
+public abstract class BaseLoadActivity<P extends IPresenter> extends BaseActivity<P> {
     protected View mContentView;
     protected Gloading.Holder mHolder;
+
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         ViewGroup contentParent = findViewById(android.R.id.content);
         mContentView = contentParent.getChildAt(0);
+
+        contentParent.removeAllViews();
+
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+
         TitleBar titleBar = initTitleBar();
+
         if (titleBar != null) {
-            contentParent.removeAllViews();
-
-            LinearLayout linearLayout = new LinearLayout(this);
-            linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-            linearLayout.setOrientation(LinearLayout.VERTICAL);
             linearLayout.addView(titleBar);
-            linearLayout.addView(mContentView);
-
-            contentParent.addView(linearLayout);
         }
 
+        if (mContentView!= null) {
+            linearLayout.addView(mContentView);
+        }
+
+        contentParent.addView(linearLayout);
+
+
+        onLoad();
     }
+
+    /**
+     * 一开始加载的数据放在这个方法，便于重试时，再次调用
+     */
+    public abstract void onLoad();
+
     @Override
     public void onViewClick(View view) {
 
     }
+
     protected TitleBar initTitleBar() {
         return TitleUtils.initTitleBarDynamic(this, getTitle(), v -> {
             finish();
@@ -69,7 +85,8 @@ public abstract class BaseLoadActivity<P extends IPresenter> extends BaseActivit
     }
 
     protected void onLoadRetry() {
-        // override this method in subclass to do retry task
+        showLoading();
+        onLoad();
     }
 
     public void showLoading() {

@@ -17,7 +17,7 @@ public class OtherGloadingAdapter extends GlobalAdapter {
         if (status == Gloading.STATUS_LOAD_FAILED) {
             View view = View.inflate(holder.getContext(), R.layout.view_other_error, null);
             view.findViewById(R.id.btn_error).setOnClickListener(v -> {
-                convertView.post(holder.getRetryTask());
+                view.post(holder.getRetryTask());
             });
 
             return view;

@@ -26,6 +26,7 @@ import android.app.Activity;
  */
 public interface IPresenter {
 
+
     /**
      * 做一些初始化操作
      */

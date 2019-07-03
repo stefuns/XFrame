@@ -41,11 +41,16 @@ public class SimpleLoadActivity extends BaseLoadActivity {
     }
 
     @Override
+    public void onLoad() {
+
+    }
+
+    @Override
     public void onViewClick(View view) {
 
     }
 
-
+    @Override
     protected void initLoadingStatusViewIfNeed() {
         if (mHolder == null) {
             //bind status view to activity root view by default

@@ -46,6 +46,7 @@ public class TestFragmentPresenter extends BasePresenter<TestFragmentContract.Mo
         super(model, rootView);
     }
 
+
     public void getExpertCategory() {
         mRootView.showLoading();
 
@@ -66,6 +67,12 @@ public class TestFragmentPresenter extends BasePresenter<TestFragmentContract.Mo
                                     mRootView.showLoadFailed();
                                 }
                             }
+
+                            @Override
+                            public void onError(Throwable t) {
+                                super.onError(t);
+                                mRootView.showLoadFailed();
+                            }
                         })
                 ;
             }
@@ -73,7 +80,9 @@ public class TestFragmentPresenter extends BasePresenter<TestFragmentContract.Mo
 
     }
 
-        @Override
+
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         this.mErrorHandler = null;

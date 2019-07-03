@@ -37,7 +37,7 @@ import io.reactivex.functions.Action;
  * ================================================
  * 基类 Presenter
  */
-public class BasePresenter<M extends IModel, V extends IView> implements IPresenter, LifecycleObserver {
+public  class BasePresenter<M extends IModel, V extends IView> implements IPresenter, LifecycleObserver {
     protected final String TAG = this.getClass().getSimpleName();
     protected CompositeDisposable mCompositeDisposable;
     protected M mModel;
@@ -72,6 +72,7 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
         onStart();
     }
 
+
     @Override
     public void onStart() {
         //将 LifecycleObserver 注册给 LifecycleOwner 后 @OnLifecycleEvent 才可以正常使用
@@ -83,7 +84,9 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
         }
         if (useEventBus())//如果要使用 EventBus 请将此方法返回 true
             EventBusManager.getInstance().register(this);//注册 EventBus
+
     }
+
 
     /**
      * 在框架中 {@link Activity#onDestroy()} 时会默认调用 {@link IPresenter#onDestroy()}

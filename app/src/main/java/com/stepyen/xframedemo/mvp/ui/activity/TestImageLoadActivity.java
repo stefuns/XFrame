@@ -51,6 +51,11 @@ public class TestImageLoadActivity extends BaseLoadActivity {
     }
 
     @Override
+    public void onLoad() {
+
+    }
+
+    @Override
     public void onViewClick(View view) {
 
     }
