@@ -25,6 +25,12 @@ public abstract class BaseLoadActivity<P extends IPresenter> extends BaseActivit
     protected Gloading.Holder mHolder;
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        onLoad();
+    }
+
+    @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         ViewGroup contentParent = findViewById(android.R.id.content);
         mContentView = contentParent.getChildAt(0);
@@ -47,8 +53,6 @@ public abstract class BaseLoadActivity<P extends IPresenter> extends BaseActivit
 
         contentParent.addView(linearLayout);
 
-
-        onLoad();
     }
 
     /**

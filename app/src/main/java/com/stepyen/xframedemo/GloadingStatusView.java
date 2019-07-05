@@ -25,11 +25,7 @@ public class GloadingStatusView extends FrameLayout {
     private View mErrorView;
     private View mNetErrorView;
     private View mEmptyView;
-
-    private ImageView mIvLoading;
-
     private Context mContext;
-    private Animation mAnimation;
 
     public GloadingStatusView(Context context, Runnable retryTask ) {
         super(context);
@@ -44,13 +40,7 @@ public class GloadingStatusView extends FrameLayout {
             case Gloading.STATUS_LOADING:
                 if (mLoadingView == null) {
                     mLoadingView = LayoutInflater.from(mContext).inflate(R.layout.view_loading, null);
-                    mIvLoading = (ImageView) mLoadingView.findViewById(R.id.iv_loading);
-//                    mAnimation = AnimationUtils.loadAnimation(mContext, R.anim.anim_round_rotate);
-//                    LinearInterpolator interpolator = new LinearInterpolator(); //匀速加速器
-//                    mAnimation.setInterpolator(interpolator);
                 }
-                // 将 view 从父布局移除会停止动画
-//                mIvLoading.startAnimation(mAnimation);
                 addView(mLoadingView);
                 break;
             case Gloading.STATUS_LOAD_SUCCESS:

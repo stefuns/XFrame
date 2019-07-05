@@ -69,13 +69,7 @@ dependencies {
         exclude module: 'rxlifecycle'
     }
 
-    api(deps.rxpermissions2) {
-        exclude module: 'rxjava'
-        exclude module: 'support-annotations'
-    }
-
     api deps.rxerrorhandler2
-
 
     api(deps.retrofit.runtime) {
         exclude module: 'okhttp'
