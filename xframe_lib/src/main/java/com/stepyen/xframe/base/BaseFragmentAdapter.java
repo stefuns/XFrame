@@ -11,36 +11,44 @@ import java.util.List;
 /**
  * date：2019/5/27
  * author：stepyen
- * description：FragmentPagerAdapter 使用于fragment较少的
+ * description：
+ *
+ * 实例存在，视图销毁
  */
 public class BaseFragmentAdapter<T extends Fragment> extends FragmentPagerAdapter {
 
-    private List<T> mFragmentList = new ArrayList<>();
-    private CharSequence[] mTitles;
+    protected List<T> mFragmentList = new ArrayList<>();
+    protected CharSequence[] mTitles;
+    protected FragmentManager mFragmentManager;
     public BaseFragmentAdapter(FragmentManager fm) {
         super(fm);
+        mFragmentManager = fm;
     }
 
     public BaseFragmentAdapter(FragmentManager fm, List<T> fragments) {
         super(fm);
         setFragments(fragments);
+        mFragmentManager = fm;
     }
 
     public BaseFragmentAdapter(FragmentManager fm, T[] fragments) {
         super(fm);
         setFragments(Arrays.asList(fragments));
+        mFragmentManager = fm;
     }
 
     public BaseFragmentAdapter(FragmentManager fm, List<T> fragments, CharSequence[] titles) {
         super(fm);
         setFragments(fragments);
         this.mTitles = titles;
+        mFragmentManager = fm;
     }
 
     public BaseFragmentAdapter(FragmentManager fm, T[] fragments, CharSequence[] titles) {
         super(fm);
         setFragments(Arrays.asList(fragments));
         this.mTitles = titles;
+        mFragmentManager = fm;
     }
 
     public void addFragment(T fragment) {
@@ -83,6 +91,4 @@ public class BaseFragmentAdapter<T extends Fragment> extends FragmentPagerAdapte
     public List<T> getFragmentLists() {
         return mFragmentList;
     }
-
-
 }

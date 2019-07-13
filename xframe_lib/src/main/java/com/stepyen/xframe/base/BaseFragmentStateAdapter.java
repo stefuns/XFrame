@@ -12,36 +12,45 @@ import java.util.List;
 /**
  * date：2019/5/27
  * author：stepyen
- * description：FragmentStatePagerAdapter 使用于fragment较多的情况，内部实现fragment复用
+ * description：
+ *
+ *
+ * 实例销毁 视图销毁    内部fragment复用
  */
 public class BaseFragmentStateAdapter<T extends Fragment> extends FragmentStatePagerAdapter {
 
-    private List<T> mFragmentList = new ArrayList<>();
-    private CharSequence[] mTitles;
+    protected List<T> mFragmentList = new ArrayList<>();
+    protected CharSequence[] mTitles;
+    protected FragmentManager mFragmentManager;
     public BaseFragmentStateAdapter(FragmentManager fm) {
         super(fm);
+        mFragmentManager = fm;
     }
 
     public BaseFragmentStateAdapter(FragmentManager fm, List<T> fragments) {
         super(fm);
         setFragments(fragments);
+        mFragmentManager = fm;
     }
 
     public BaseFragmentStateAdapter(FragmentManager fm, T[] fragments) {
         super(fm);
         setFragments(Arrays.asList(fragments));
+        mFragmentManager = fm;
     }
 
     public BaseFragmentStateAdapter(FragmentManager fm, List<T> fragments, CharSequence[] titles) {
         super(fm);
         setFragments(fragments);
         this.mTitles = titles;
+        mFragmentManager = fm;
     }
 
     public BaseFragmentStateAdapter(FragmentManager fm, T[] fragments, CharSequence[] titles) {
         super(fm);
         setFragments(Arrays.asList(fragments));
         this.mTitles = titles;
+        mFragmentManager = fm;
     }
 
     public void addFragment(T fragment) {
