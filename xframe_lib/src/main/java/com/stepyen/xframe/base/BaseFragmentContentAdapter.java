@@ -13,7 +13,7 @@ import java.util.List;
  *
  * 视图存在，实例存在
  */
-public abstract class BaseFragmentContentAdapter<T extends Fragment> extends BaseFragmentAdapter<T> {
+public class BaseFragmentContentAdapter<T extends Fragment> extends BaseFragmentAdapter<T> {
 
     public BaseFragmentContentAdapter(FragmentManager fm) {
         super(fm);
