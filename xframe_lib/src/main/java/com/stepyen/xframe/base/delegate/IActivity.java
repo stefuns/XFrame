@@ -85,13 +85,4 @@ public interface IActivity {
      * @return
      */
     boolean useFragment();
-
-    /**
-     * view的点击事件
-     * butterknife绑定的点击事件统一写在这里
-     * 添加注解如： @OnClick(R.id.btn1,R.id.btn2)
-     * @param view
-     */
-    @OnClick()
-    void onViewClick(View view);
 }
