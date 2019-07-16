@@ -21,12 +21,14 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.SpannedString;
+import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,21 +42,28 @@ import com.stepyen.xframe.base.App;
 import com.stepyen.xframe.di.component.AppComponent;
 
 import java.security.MessageDigest;
+import java.util.List;
 
 /**
  * ================================================
  * 一些框架常用的工具
- * <p>
- * Created by JessYan on 2015/11/23.
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
  */
-public class ArmsUtils {
+public class XFrameUtils {
     static public Toast mToast;
 
-    private ArmsUtils() {
+    private static Context mContext;
+
+    private XFrameUtils() {
         throw new IllegalStateException("you can't instantiate me!");
+    }
+
+    public static void init(Context context) {
+        mContext = context;
+    }
+
+    public static Context getContext() {
+        Preconditions.checkNotNull(mContext, "请先在全局Application中调用 XFrameUtils.init() 初始化！");
+        return mContext;
     }
 
     /**
@@ -64,8 +73,8 @@ public class ArmsUtils {
      * @param v
      * @param res
      */
-    public static void setViewHintSize(Context context, int size, TextView v, int res) {
-        SpannableString ss = new SpannableString(getResources(context).getString(
+    public static void setViewHintSize( int size, TextView v, int res) {
+        SpannableString ss = new SpannableString(getResources().getString(
                 res));
         // 新建一个属性对象,设置文字的大小
         AbsoluteSizeSpan ass = new AbsoluteSizeSpan(size, true);
@@ -79,85 +88,78 @@ public class ArmsUtils {
     /**
      * dp 转 px
      *
-     * @param context {@link Context}
      * @param dpValue {@code dpValue}
      * @return {@code pxValue}
      */
-    public static int dip2px(@NonNull Context context, float dpValue) {
-        final float scale = getResources(context).getDisplayMetrics().density;
+    public static int dp2px( float dpValue) {
+        final float scale = getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 
     /**
      * px 转 dp
      *
-     * @param context {@link Context}
      * @param pxValue {@code pxValue}
      * @return {@code dpValue}
      */
-    public static int pix2dip(@NonNull Context context, int pxValue) {
-        final float scale = getResources(context).getDisplayMetrics().density;
+    public static int px2dp( int pxValue) {
+        final float scale = getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 
     /**
      * sp 转 px
      *
-     * @param context {@link Context}
      * @param spValue {@code spValue}
      * @return {@code pxValue}
      */
-    public static int sp2px(@NonNull Context context, float spValue) {
-        final float fontScale = getResources(context).getDisplayMetrics().scaledDensity;
+    public static int sp2px(float spValue) {
+        final float fontScale = getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
 
     /**
      * px 转 sp
      *
-     * @param context {@link Context}
      * @param pxValue {@code pxValue}
      * @return {@code spValue}
      */
-    public static int px2sp(@NonNull Context context, float pxValue) {
-        final float fontScale = getResources(context).getDisplayMetrics().scaledDensity;
+    public static int px2sp( float pxValue) {
+        final float fontScale = getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
 
     /**
      * 获得资源
      */
-    public static Resources getResources(Context context) {
-        return context.getResources();
+    public static Resources getResources() {
+        return mContext.getResources();
     }
 
     /**
      * 得到字符数组
      */
-    public static String[] getStringArray(Context context, int id) {
-        return getResources(context).getStringArray(id);
+    public static String[] getStringArray(int id) {
+        return getResources().getStringArray(id);
     }
 
     /**
      * 从 dimens 中获得尺寸
      *
-     * @param context
      * @param id
      * @return
      */
-    public static int getDimens(Context context, int id) {
-        return (int) getResources(context).getDimension(id);
+    public static int getDimens(int id) {
+        return (int) getResources().getDimension(id);
     }
 
     /**
      * 从 dimens 中获得尺寸
-     *
-     * @param context
      * @param dimenName
      * @return
      */
-    public static float getDimens(Context context, String dimenName) {
-        return getResources(context).getDimension(getResources(context).getIdentifier(dimenName, "dimen", context.getPackageName()));
+    public static float getDimens( String dimenName) {
+        return getResources().getDimension(getResources().getIdentifier(dimenName, "dimen", mContext.getPackageName()));
     }
 
     /**
@@ -165,9 +167,8 @@ public class ArmsUtils {
      *
      * @return
      */
-
-    public static String getString(Context context, int stringID) {
-        return getResources(context).getString(stringID);
+    public static String getString(int stringID) {
+        return getResources().getString(stringID);
     }
 
     /**
@@ -175,48 +176,37 @@ public class ArmsUtils {
      *
      * @return
      */
-    public static String getString(Context context, String strName) {
-        return getString(context, getResources(context).getIdentifier(strName, "string", context.getPackageName()));
+    public static String getString( String strName) {
+        return getString(getResources().getIdentifier(strName, "string", mContext.getPackageName()));
+    }
+
+    public static String getStringFormat(@StringRes int resId, Object... args) {
+        return String.format(getString(resId), args);
+    }
+
+    public static String getText(TextView tv) {
+        if (tv == null) {
+            return "";
+        }
+
+        return tv.getText().toString().trim();
     }
 
     /**
-     * findview
-     *
-     * @param view
-     * @param viewName
-     * @param <T>
-     * @return
+     * 获得颜色
      */
-    public static <T extends View> T findViewByName(Context context, View view, String viewName) {
-        int id = getResources(context).getIdentifier(viewName, "id", context.getPackageName());
-        T v = (T) view.findViewById(id);
-        return v;
+    public static int getColor(int rid) {
+        return getResources().getColor(rid);
     }
 
     /**
-     * findview
-     *
-     * @param activity
-     * @param viewName
-     * @param <T>
-     * @return
+     * 获得颜色
      */
-    public static <T extends View> T findViewByName(Context context, Activity activity, String viewName) {
-        int id = getResources(context).getIdentifier(viewName, "id", context.getPackageName());
-        T v = (T) activity.findViewById(id);
-        return v;
+    public static int getColor( String colorName) {
+        return getColor( getResources().getIdentifier(colorName, "color", mContext.getPackageName()));
     }
 
-    /**
-     * 根据 layout 名字获得 id
-     *
-     * @param layoutName
-     * @return
-     */
-    public static int findLayout(Context context, String layoutName) {
-        int id = getResources(context).getIdentifier(layoutName, "layout", context.getPackageName());
-        return id;
-    }
+
 
     /**
      * 填充view
@@ -233,9 +223,9 @@ public class ArmsUtils {
      *
      * @param string
      */
-    public static void makeText(Context context, String string) {
+    public static void makeText(String string) {
         if (mToast == null) {
-            mToast = Toast.makeText(context, string, Toast.LENGTH_SHORT);
+            mToast = Toast.makeText(mContext, string, Toast.LENGTH_SHORT);
         }
         mToast.setText(string);
         mToast.show();
@@ -273,44 +263,24 @@ public class ArmsUtils {
      * @param rID
      * @return
      */
-    public static Drawable getDrawablebyResource(Context context, int rID) {
-        return getResources(context).getDrawable(rID);
+    public static Drawable getDrawable( int rID) {
+        return getResources().getDrawable(rID);
     }
 
-    /**
-     * 跳转界面 1, 通过 {@link AppManager#startActivity(Class)}
-     *
-     * @param activityClass
-     */
+
     public static void startActivity(Class activityClass) {
         AppManager.getAppManager().startActivity(activityClass);
     }
 
-    /**
-     * 跳转界面 2, 通过 {@link AppManager#startActivity(Intent)}
-     *
-     * @param
-     */
     public static void startActivity(Intent content) {
         AppManager.getAppManager().startActivity(content);
     }
 
-    /**
-     * 跳转界面 3
-     *
-     * @param activity
-     * @param homeActivityClass
-     */
     public static void startActivity(Activity activity, Class homeActivityClass) {
         Intent intent = new Intent(activity.getApplicationContext(), homeActivityClass);
         activity.startActivity(intent);
     }
 
-    /**
-     * 跳转界面 4
-     *
-     * @param
-     */
     public static void startActivity(Activity activity, Intent intent) {
         activity.startActivity(intent);
     }
@@ -320,8 +290,8 @@ public class ArmsUtils {
      *
      * @return
      */
-    public static int getScreenWidth(Context context) {
-        return getResources(context).getDisplayMetrics().widthPixels;
+    public static int getScreenWidth() {
+        return getResources().getDisplayMetrics().widthPixels;
     }
 
     /**
@@ -329,23 +299,10 @@ public class ArmsUtils {
      *
      * @return
      */
-    public static int getScreenHeidth(Context context) {
-        return getResources(context).getDisplayMetrics().heightPixels;
+    public static int getScreenHeidth() {
+        return getResources().getDisplayMetrics().heightPixels;
     }
 
-    /**
-     * 获得颜色
-     */
-    public static int getColor(Context context, int rid) {
-        return getResources(context).getColor(rid);
-    }
-
-    /**
-     * 获得颜色
-     */
-    public static int getColor(Context context, String colorName) {
-        return getColor(context, getResources(context).getIdentifier(colorName, "color", context.getPackageName()));
-    }
 
     /**
      * 移除孩子
@@ -360,19 +317,36 @@ public class ArmsUtils {
         }
     }
 
-    public static boolean isEmpty(Object obj) {
-        if (obj == null) {
-            return true;
+    public static boolean isNoEmpty(String string) {
+        if (string == null || TextUtils.isEmpty(string)) {
+            return false;
         }
-        return false;
+
+        return true;
     }
+
+    public static boolean isNoEmpty(List list) {
+        if (list == null ||list.isEmpty()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean isNoEmpty(Object object) {
+        if (object == null ) {
+            return false;
+        }
+
+        return true;
+    }
+
 
     /**
      * MD5
      *
      * @param string
      * @return
-     * @throws Exception
      */
     public static String encodeToMD5(String string) {
         byte[] hash = new byte[0];
@@ -403,22 +377,6 @@ public class ArmsUtils {
         activity.getWindow().setAttributes(attrs);
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-    }
-
-    /**
-     * 配置 RecyclerView
-     *
-     * @param recyclerView
-     * @param layoutManager
-     * @deprecated Use {@link #configRecyclerView(RecyclerView, RecyclerView.LayoutManager)} instead
-     */
-    @Deprecated
-    public static void configRecycleView(final RecyclerView recyclerView
-            , RecyclerView.LayoutManager layoutManager) {
-        recyclerView.setLayoutManager(layoutManager);
-        //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
     /**

@@ -21,7 +21,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.stepyen.xframe.integration.EventBusManager;
-import com.stepyen.xframe.utils.ArmsUtils;
+import com.stepyen.xframe.utils.XFrameUtils;
 
 /**
  * ================================================
@@ -45,7 +45,7 @@ public class ActivityDelegateImpl implements ActivityDelegate {
         }
 
         //这里提供 AppComponent 对象给 BaseActivity 的子类, 用于 Dagger2 的依赖注入
-        iActivity.setupActivityComponent(ArmsUtils.obtainAppComponentFromContext(mActivity));
+        iActivity.setupActivityComponent(XFrameUtils.obtainAppComponentFromContext(mActivity));
     }
 
     @Override

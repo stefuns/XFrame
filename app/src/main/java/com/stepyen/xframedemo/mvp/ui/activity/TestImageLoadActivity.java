@@ -3,14 +3,13 @@ package com.stepyen.xframedemo.mvp.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.stepyen.xframe.base.BaseLoadActivity;
 import com.stepyen.xframe.di.component.AppComponent;
 import com.stepyen.xframe.http.imageloader.ImageLoader;
 import com.stepyen.xframe.http.imageloader.glide.ImageConfigImpl;
-import com.stepyen.xframe.utils.ArmsUtils;
+import com.stepyen.xframe.utils.XFrameUtils;
 import com.stepyen.xframedemo.Constant;
 import com.stepyen.xframedemo.R;
 
@@ -39,7 +38,7 @@ public class TestImageLoadActivity extends BaseLoadActivity {
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         super.initData(savedInstanceState);
-        AppComponent appComponent = ArmsUtils.obtainAppComponentFromContext(this);
+        AppComponent appComponent = XFrameUtils.obtainAppComponentFromContext(this);
         ImageLoader imageLoader = appComponent.imageLoader();
 
         ImageConfigImpl imageConfig = ImageConfigImpl
@@ -55,9 +54,5 @@ public class TestImageLoadActivity extends BaseLoadActivity {
 
     }
 
-    @Override
-    public void onViewClick(View view) {
-
-    }
 
 }

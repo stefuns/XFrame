@@ -27,7 +27,7 @@ import android.support.v4.app.Fragment;
 
 import com.stepyen.xframe.integration.ConfigModule;
 import com.stepyen.xframe.integration.ManifestParser;
-import com.stepyen.xframe.utils.ArmsUtils;
+import com.stepyen.xframe.utils.XFrameUtils;
 import com.stepyen.xframe.utils.Preconditions;
 import com.stepyen.xframe.base.App;
 import com.stepyen.xframe.base.BaseApplication;
@@ -130,6 +130,9 @@ public class AppDelegate implements App, AppLifecycles {
         for (AppLifecycles lifecycle : mAppLifecycles) {
             lifecycle.onCreate(mApplication);
         }
+
+        // 初始化一个工具类
+        XFrameUtils.init(application);
     }
 
     @Override
@@ -184,7 +187,7 @@ public class AppDelegate implements App, AppLifecycles {
      * 将 {@link AppComponent} 返回出去, 供其它地方使用, {@link AppComponent} 接口中声明的方法返回的实例, 在 {@link #getAppComponent()} 拿到对象后都可以直接使用
      *
      * @return AppComponent
-     * @see ArmsUtils#obtainAppComponentFromContext(Context) 可直接获取 {@link AppComponent}
+     * @see XFrameUtils#obtainAppComponentFromContext(Context) 可直接获取 {@link AppComponent}
      */
     @NonNull
     @Override

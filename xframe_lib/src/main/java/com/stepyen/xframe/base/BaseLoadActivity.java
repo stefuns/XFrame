@@ -9,11 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.billy.android.loading.Gloading;
-import com.stepyen.xframe.di.component.AppComponent;
-import com.stepyen.xframe.mvp.IView;
-import com.stepyen.xframe.widget.actionbar.TitleBar;
-import com.stepyen.xframe.widget.actionbar.TitleUtils;
 import com.stepyen.xframe.mvp.IPresenter;
+import com.stepyen.xframe.widget.actionbar.TitleUtils;
 
 /**
  * date：2019/5/24
@@ -41,7 +38,7 @@ public abstract class BaseLoadActivity<P extends IPresenter> extends BaseActivit
         linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
-        TitleBar titleBar = initTitleBar();
+        View titleBar = initTitleBar();
 
         if (titleBar != null) {
             linearLayout.addView(titleBar);
@@ -60,12 +57,8 @@ public abstract class BaseLoadActivity<P extends IPresenter> extends BaseActivit
      */
     public abstract void onLoad();
 
-    @Override
-    public void onViewClick(View view) {
 
-    }
-
-    protected TitleBar initTitleBar() {
+    protected View initTitleBar() {
         return TitleUtils.initTitleBarDynamic(this, getTitle(), v -> {
             finish();
         });

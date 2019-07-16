@@ -19,7 +19,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
-import com.stepyen.xframe.utils.ArmsUtils;
+import com.stepyen.xframe.utils.XFrameUtils;
 import com.stepyen.xframe.utils.Preconditions;
 
 import static com.stepyen.xframe.utils.Preconditions.checkNotNull;
@@ -91,7 +91,7 @@ public interface IView {
      */
     default void launchActivity(@NonNull Intent intent) {
         Preconditions.checkNotNull(intent);
-        ArmsUtils.startActivity(intent);
+        XFrameUtils.startActivity(intent);
     }
 
     /**

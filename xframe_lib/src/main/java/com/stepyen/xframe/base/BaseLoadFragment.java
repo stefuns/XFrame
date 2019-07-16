@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 
 import com.billy.android.loading.Gloading;
 import com.stepyen.xframe.mvp.IPresenter;
-import com.stepyen.xframe.widget.actionbar.TitleBar;
 import com.stepyen.xframe.widget.actionbar.TitleUtils;
 
 import butterknife.ButterKnife;
@@ -32,7 +31,7 @@ public abstract class BaseLoadFragment<P extends IPresenter> extends BaseFragmen
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = initView(inflater, container, savedInstanceState);
 
-        TitleBar titleBar = initTitleBar();
+        View titleBar = initTitleBar();
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -61,7 +60,7 @@ public abstract class BaseLoadFragment<P extends IPresenter> extends BaseFragmen
     public abstract void onLoad();
 
 
-    protected TitleBar initTitleBar() {
+    protected View initTitleBar() {
         return TitleUtils.initTitleBarDynamic(getContext(), getTitle(), v -> {
             getActivity().finish();
         });
@@ -71,10 +70,6 @@ public abstract class BaseLoadFragment<P extends IPresenter> extends BaseFragmen
         return "";
     }
 
-    @Override
-    public void onViewClick(View view) {
-
-    }
     protected void initLoadingStatusViewIfNeed() {
         if (mHolder == null) {
             //bind status view to activity root view by default

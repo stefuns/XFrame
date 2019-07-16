@@ -22,7 +22,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.stepyen.xframe.integration.EventBusManager;
-import com.stepyen.xframe.utils.ArmsUtils;
+import com.stepyen.xframe.utils.XFrameUtils;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -53,7 +53,7 @@ public class FragmentDelegateImpl implements FragmentDelegate {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         if (iFragment.useEventBus())//如果要使用eventbus请将此方法返回true
             EventBusManager.getInstance().register(mFragment);//注册到事件主线
-        iFragment.setupFragmentComponent(ArmsUtils.obtainAppComponentFromContext(mFragment.getActivity()));
+        iFragment.setupFragmentComponent(XFrameUtils.obtainAppComponentFromContext(mFragment.getActivity()));
     }
 
     @Override

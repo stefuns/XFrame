@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.stepyen.xframe.utils.ArmsUtils;
+import com.stepyen.xframe.utils.XFrameUtils;
 
 import butterknife.ButterKnife;
 
@@ -82,7 +82,7 @@ public abstract class BaseTestActivity extends AppCompatActivity {
         }
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) view.getLayoutParams();
         if (lp != null) {
-            lp.setMargins(0, ArmsUtils.dip2px(mActivity, marginTop), 0, 0);
+            lp.setMargins(0, XFrameUtils.dp2px( marginTop), 0, 0);
             view.setLayoutParams(lp);
         }
     }

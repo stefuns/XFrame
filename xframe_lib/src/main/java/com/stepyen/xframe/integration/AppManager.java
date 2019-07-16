@@ -27,7 +27,7 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import com.stepyen.xframe.base.delegate.AppLifecycles;
-import com.stepyen.xframe.utils.ArmsUtils;
+import com.stepyen.xframe.utils.XFrameUtils;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -155,7 +155,7 @@ public final class AppManager {
                     View view = activity.getWindow().getDecorView().findViewById(android.R.id.content);
                     Snackbar.make(view, message, isLong ? Snackbar.LENGTH_LONG : Snackbar.LENGTH_SHORT).show();
                 } else {
-                    ArmsUtils.makeText(mApplication, message);
+                    XFrameUtils.makeText( message);
                 }
             }
         }).subscribeOn(AndroidSchedulers.mainThread()).subscribe();

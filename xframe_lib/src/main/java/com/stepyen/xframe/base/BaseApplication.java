@@ -21,7 +21,7 @@ import android.support.annotation.NonNull;
 
 import com.stepyen.xframe.base.delegate.AppDelegate;
 import com.stepyen.xframe.base.delegate.AppLifecycles;
-import com.stepyen.xframe.utils.ArmsUtils;
+import com.stepyen.xframe.utils.XFrameUtils;
 import com.stepyen.xframe.utils.Preconditions;
 import com.stepyen.xframe.di.component.AppComponent;
 
@@ -68,7 +68,7 @@ public class BaseApplication extends Application implements App {
     /**
      * 将 {@link AppComponent} 返回出去, 供其它地方使用, {@link AppComponent} 接口中声明的方法所返回的实例, 在 {@link #getAppComponent()} 拿到对象后都可以直接使用
      *
-     * @see ArmsUtils#obtainAppComponentFromContext(Context) 可直接获取 {@link AppComponent}
+     * @see XFrameUtils#obtainAppComponentFromContext(Context) 可直接获取 {@link AppComponent}
      * @return AppComponent
      */
     @NonNull

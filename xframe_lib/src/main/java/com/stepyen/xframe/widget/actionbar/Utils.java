@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -17,9 +18,6 @@ import android.widget.EditText;
 
 /**
  * 工具类
- *
- * @author xuexiang
- * @since 2018/5/24 下午3:50
  */
 public final class Utils {
 
@@ -56,6 +54,10 @@ public final class Utils {
         return getResources(context).getDimensionPixelSize(resId);
     }
 
+    public static int resolveDimension(Context context, @AttrRes int attr) {
+        return resolveDimension(context, attr, -1);
+    }
+
     public static int resolveDimension(Context context, @AttrRes int attr, int fallback) {
         TypedArray a = context.getTheme().obtainStyledAttributes(new int[] {attr});
         try {
@@ -73,28 +75,6 @@ public final class Utils {
         } finally {
             a.recycle();
         }
-    }
-
-    /**
-     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
-     *
-     * @param dpValue 尺寸dip
-     * @return 像素值
-     */
-    public static int dp2px(Context context, float dpValue) {
-        final float scale = getResources(context).getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
-
-    /**
-     * 根据手机的分辨率从 px(像素) 的单位 转成为 sp
-     *
-     * @param pxValue 尺寸像素
-     * @return SP值
-     */
-    public static int px2sp(Context context, float pxValue) {
-        float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
-        return (int) (pxValue / fontScale + 0.5f);
     }
 
     /**

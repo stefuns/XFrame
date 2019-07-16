@@ -12,9 +12,13 @@
     <!--标题栏动作文字的大小-->
     <attr name="xframe_actionbar_action_text_size" format="dimension"/>
     <!--标题栏动作图片的padding-->
-    <attr name="xframe_actionbar_action_padding" format="dimension"/>
+
+    <attr name="xframe_actionbar_action_horizontal_padding" format="dimension"/>
+    <attr name="xframe_actionbar_action_vertical_padding" format="dimension"/>
     <!--标题栏两侧文字的padding-->
     <attr name="xframe_actionbar_side_text_padding" format="dimension"/>
+
+
     <!--标题栏文字的颜色-->
     <attr name="xframe_actionbar_text_color" format="color"/>
 
@@ -23,8 +27,10 @@
         <attr name="tb_barHeight" format="dimension" />
         <!--是否是沉浸式标题栏，默认是false-->
         <attr name="tb_immersive" format="boolean" />
-        <!--左右图标和文字的padding-->
-        <attr name="tb_actionPadding" format="dimension" />
+        <!--左右图标和文字的水平方向padding-->
+        <attr name="tb_action_horizontal_padding" format="dimension" />
+        <!--左右图标和文字的垂直方向padding-->
+        <attr name="tb_action_vertical_padding" format="dimension" />
         <attr name="tb_sideTextPadding" format="dimension" />
         <!--文字的颜色-->
         <attr name="tb_sideTextColor" format="color" />

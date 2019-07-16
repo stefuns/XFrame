@@ -29,7 +29,7 @@ import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.AppGlideModule;
-import com.stepyen.xframe.utils.ArmsUtils;
+import com.stepyen.xframe.utils.XFrameUtils;
 import com.stepyen.xframe.utils.DataHelper;
 import com.stepyen.xframe.di.component.AppComponent;
 import com.stepyen.xframe.http.OkHttpUrlLoader;
@@ -48,7 +48,7 @@ public class GlideConfiguration extends AppGlideModule {
 
     @Override
     public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
-        final AppComponent appComponent = ArmsUtils.obtainAppComponentFromContext(context);
+        final AppComponent appComponent = XFrameUtils.obtainAppComponentFromContext(context);
         builder.setDiskCache(new DiskCache.Factory() {
             @Override
             public DiskCache build() {
@@ -80,7 +80,7 @@ public class GlideConfiguration extends AppGlideModule {
     @Override
     public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
         //Glide 默认使用 HttpURLConnection 做网络请求,在这切换成 Okhttp 请求
-        AppComponent appComponent = ArmsUtils.obtainAppComponentFromContext(context);
+        AppComponent appComponent = XFrameUtils.obtainAppComponentFromContext(context);
         registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(appComponent.okHttpClient()));
     }
 

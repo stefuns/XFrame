@@ -3,11 +3,9 @@ package com.stepyen.xframedemo.mvp.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.TextView;
 
 import com.stepyen.xframe.base.BaseLoadActivity;
-import com.stepyen.xframe.widget.actionbar.TitleBar;
 import com.stepyen.xframedemo.R;
 import com.stepyen.xframedemo.di.component.DaggerTestMVPCompoent;
 import com.stepyen.xframedemo.mvp.presenter.TestMVPPresenter;
@@ -56,11 +54,6 @@ public class TestMVPLoadActivity extends BaseLoadActivity<TestMVPPresenter> impl
         mPresenter.getExpertCategory();
     }
 
-
-    @Override
-    public void onViewClick(View view) {
-
-    }
 
     @Override
     public void onShowExpertCategory(List<ExpertCategory> data) {

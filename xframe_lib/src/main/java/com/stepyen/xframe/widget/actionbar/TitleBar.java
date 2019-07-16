@@ -1,9 +1,9 @@
-
 package com.stepyen.xframe.widget.actionbar;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Xfermode;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.stepyen.xframe.R;
+import com.stepyen.xframe.utils.XFrameUtils;
 
 import java.util.LinkedList;
 
@@ -27,7 +28,7 @@ import java.util.LinkedList;
  * @author xuexiang
  * @since 2019/1/14 下午10:08
  */
-public class TitleBar extends ViewGroup implements View.OnClickListener {
+public class TitleBar extends ViewGroup {
     private static final String STATUS_BAR_HEIGHT_RES_NAME = "status_bar_height";
     public static final int CENTER_CENTER = 0;
     public static final int CENTER_LEFT = 1;
@@ -64,9 +65,13 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
      */
     private int mStatusBarHeight;
     /**
-     * 点击动作控件的padding
+     * 点击动作控件的水平方向padding
      */
-    private int mActionPadding;
+    private int mActionHorizontalPadding;
+    /**
+     * 点击动作控件的垂直方向padding
+     */
+    private int mActionVerticalPadding;
     /**
      * 左右侧文字的padding
      */
@@ -112,7 +117,8 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
             mBarHeight = typedArray.getDimensionPixelSize(R.styleable.TitleBar_tb_barHeight, Utils.resolveDimension(context, R.attr.xframe_actionbar_height, Utils.getDimensionPixelSize(getContext(), R.dimen.xframe_default_actionbar_height)));
             mImmersive = typedArray.getBoolean(R.styleable.TitleBar_tb_immersive, false);
 
-            mActionPadding = typedArray.getDimensionPixelSize(R.styleable.TitleBar_tb_actionPadding, Utils.resolveDimension(context, R.attr.xframe_actionbar_action_padding, Utils.getDimensionPixelSize(getContext(), R.dimen.xframe_default_action_padding)));
+            mActionHorizontalPadding = typedArray.getDimensionPixelSize(R.styleable.TitleBar_tb_action_horizontal_padding, Utils.resolveDimension(context, R.attr.xframe_actionbar_action_horizontal_padding));
+            mActionVerticalPadding = typedArray.getDimensionPixelSize(R.styleable.TitleBar_tb_action_vertical_padding, Utils.resolveDimension(context, R.attr.xframe_actionbar_action_vertical_padding));
             mSideTextPadding = typedArray.getDimensionPixelSize(R.styleable.TitleBar_tb_sideTextPadding, Utils.resolveDimension(context, R.attr.xframe_actionbar_side_text_padding, Utils.getDimensionPixelSize(getContext(), R.dimen.xframe_default_sidetext_padding)));
             mCenterGravity = typedArray.getInt(R.styleable.TitleBar_tb_centerGravity, CENTER_CENTER);
 
@@ -179,7 +185,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         mSubTitleText.setTextColor(mSubTitleTextColor);
         mSubTitleText.setText(mSubTextString);
         mSubTitleText.setSingleLine();
-        mSubTitleText.setPadding(0, Utils.dp2px(getContext(), 2), 0, 0);
+        mSubTitleText.setPadding(0, XFrameUtils.dp2px(2), 0, 0);
         mSubTitleText.setEllipsize(TextUtils.TruncateAt.END);
 
         if (mCenterGravity == CENTER_LEFT) {
@@ -238,7 +244,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     public TitleBar setBackImageResource(int resId) {
         if (resId != 0) {
             mLeftImageResource = Utils.getDrawable(getContext(), resId);
-            mLeftImageResource.setBounds(0, 0, Utils.dp2px(getContext(), 12), Utils.dp2px(getContext(), 22));
+            mLeftImageResource.setBounds(0, 0, XFrameUtils.dp2px( 12), XFrameUtils.dp2px(22));
             mLeftText.setCompoundDrawables(mLeftImageResource, null, null, null);
         } else {
             mLeftImageResource = null;
@@ -524,15 +530,6 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         return this;
     }
 
-    @Override
-    public void onClick(View view) {
-        final Object tag = view.getTag();
-        if (tag instanceof Action) {
-            final Action action = (Action) tag;
-            action.performAction(view);
-        }
-    }
-
     /**
      * Adds a list of {@link Action}s.
      *
@@ -620,30 +617,47 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
      * @return a view
      */
     protected View inflateAction(Action action) {
+        if (action == null) {
+            return null;
+        }
+
         View view = null;
-        if (TextUtils.isEmpty(action.getText())) {
+
+        if (TextUtils.isEmpty(action.text)) {
             ImageView img = new ImageView(getContext());
-            img.setImageResource(action.getDrawable());
+            img.setImageDrawable(action.drawable);
             view = img;
-        } else {
+        }else{
             TextView text = new TextView(getContext());
             text.setGravity(Gravity.CENTER);
-            text.setText(action.getText());
-            text.setTextSize(TypedValue.COMPLEX_UNIT_PX, mActionTextSize);
+            text.setText(action.text);
+            text.setTextSize(TypedValue.COMPLEX_UNIT_PX, action.textSize == 0 ? mActionTextSize : action.textSize);
             //字体大于等于16sp自动加粗
-            if (Utils.px2sp(getContext(), mActionTextSize) >= 16) {
+            if (XFrameUtils.px2sp(mActionTextSize) >= 16) {
                 TextPaint tp = text.getPaint();
                 tp.setFakeBoldText(true);
             }
-            if (mActionTextColor != 0) {
-                text.setTextColor(mActionTextColor);
+            text.setTextColor(action.textColor == 0 ? mActionTextColor : action.textColor);
+
+            if (action.drawable != null) {
+                action.drawable.setBounds(0, 0, XFrameUtils.dp2px(19), XFrameUtils.dp2px( 19));
+                text.setCompoundDrawables(null, action.drawable, null, null);
             }
+
             view = text;
         }
 
-        view.setPadding(action.leftPadding() != -1 ? action.leftPadding() : mActionPadding, 0, action.rightPadding() != -1 ? action.rightPadding() : mActionPadding, 0);
-        view.setTag(action);
-        view.setOnClickListener(this);
+        int[] padding = action.padding;
+        if (padding != null) {
+            view.setPadding(padding[0], padding[1], padding[2], padding[3]);
+        } else {
+            view.setPadding(mActionHorizontalPadding, mActionVerticalPadding, mActionHorizontalPadding, mActionVerticalPadding);
+        }
+
+        if (action.clickListener !=null) {
+            view.setOnClickListener(action.clickListener);
+        }
+
         return view;
     }
 
@@ -728,100 +742,85 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     public static class ActionList extends LinkedList<Action> {
     }
 
-    /**
-     * Definition of an action that could be performed, along with a icon to
-     * show.
-     */
-    public interface Action {
-        /**
-         * @return 显示文字
-         */
-        String getText();
 
-        /**
-         * @return 显示图标
-         */
-        int getDrawable();
+    public static class Action {
+        public CharSequence text;
+        public int textColor;
+        public int textSize;
+        public Drawable drawable;
+        public int[] padding;
+        public OnClickListener clickListener;
 
-        /**
-         * 点击动作
-         *
-         * @param view
-         */
-        void performAction(View view);
+        private Action(Builder builder) {
+            text = builder.text;
+            textColor = builder.textColor;
+            textSize = builder.textSize;
+            drawable = builder.drawable;
+            padding = builder.padding;
+            clickListener = builder.clickListener;
 
-        /**
-         * @return 左边间距
-         */
-        int leftPadding();
-
-        /**
-         * @return 右边间距
-         */
-        int rightPadding();
-    }
-
-    /**
-     * 图片动作
-     */
-    public static abstract class ImageAction implements Action {
-
-        private int mDrawable;
-
-        public ImageAction(int drawable) {
-            mDrawable = drawable;
         }
 
-        @Override
-        public int getDrawable() {
-            return mDrawable;
+        public static Builder newBuilder() {
+            return new Builder();
         }
 
-        @Override
-        public String getText() {
-            return null;
-        }
 
-        @Override
-        public int leftPadding() {
-            return -1;
-        }
+        public static final class Builder {
+            private CharSequence text;
+            private int textColor;
+            private int textSize;
+            private Drawable drawable;
+            private int[] padding;
+            private OnClickListener clickListener;
+            private Builder( ) {
 
-        @Override
-        public int rightPadding() {
-            return 0;
-        }
-    }
+            }
 
-    /**
-     * 文字动作
-     */
-    public static abstract class TextAction implements Action {
+            public Builder text(CharSequence val) {
+                text = val;
+                return this;
+            }
 
-        final private String mText;
+            public Builder textColor(int val) {
+                textColor = XFrameUtils.getColor(val);
+                return this;
+            }
 
-        public TextAction(String text) {
-            mText = text;
-        }
+            public Builder textSize(int val) {
+                textSize = XFrameUtils.getDimens(val);
+                return this;
+            }
 
-        @Override
-        public int getDrawable() {
-            return 0;
-        }
+            public Builder drawable(int val) {
+                drawable = XFrameUtils.getDrawable(val);
+                return this;
+            }
 
-        @Override
-        public String getText() {
-            return mText;
-        }
+            public Builder padding(int padding) {
+                padding = XFrameUtils.dp2px(padding);
+                this.padding = new int[]{padding, padding, padding, padding};
+                return this;
+            }
 
-        @Override
-        public int leftPadding() {
-            return -1;
-        }
+            public Builder padding(int left, int top, int right, int bottom) {
+                left = XFrameUtils.dp2px(left);
+                top = XFrameUtils.dp2px(top);
+                right = XFrameUtils.dp2px(right);
+                bottom = XFrameUtils.dp2px(bottom);
+                this.padding = new int[]{left, top, right, bottom};
+                return this;
+            }
 
-        @Override
-        public int rightPadding() {
-            return 0;
+
+            public Builder clickListener(OnClickListener val) {
+                clickListener = val;
+                return this;
+            }
+
+            public Action build() {
+                return new Action(this);
+            }
         }
     }
 
