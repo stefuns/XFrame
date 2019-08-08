@@ -1,5 +1,6 @@
 package com.stepyen.xframedemo.mvp.contract;
 
+import com.stepyen.xframe.mvp.ILoadView;
 import com.stepyen.xframe.mvp.IView;
 import com.stepyen.xframedemo.mvp.model.net.BaseResponse;
 import com.stepyen.xframedemo.mvp.model.net.entity.ExpertCategory;
@@ -15,7 +16,7 @@ import io.reactivex.Observable;
  * description：
  */
 public class TestMVPContract {
-    public interface View extends IView {
+    public interface View extends ILoadView {
        void onShowExpertCategory(List<ExpertCategory> data);
     }
 

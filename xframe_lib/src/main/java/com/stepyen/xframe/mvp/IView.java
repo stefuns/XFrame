@@ -48,34 +48,6 @@ public interface IView {
     }
 
     /**
-     * 显示加载视图
-     */
-    default void showLoading() {
-
-    }
-
-    /**
-     * 显示成功视图
-     */
-    default void showLoadSuccess() {
-
-    }
-
-    /**
-     * 显示失败视图
-     */
-    default void showLoadFailed() {
-
-    }
-
-    /**
-     * 显示空视图
-     */
-    default void showEmpty() {
-
-    }
-
-    /**
      * 显示信息
      *
      * @param message 消息内容, 不能为 {@code null}

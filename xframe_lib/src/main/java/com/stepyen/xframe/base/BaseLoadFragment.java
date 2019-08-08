@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.billy.android.loading.Gloading;
+import com.stepyen.xframe.mvp.ILoadView;
 import com.stepyen.xframe.mvp.IPresenter;
 import com.stepyen.xframe.widget.actionbar.TitleUtils;
 
@@ -20,7 +21,7 @@ import butterknife.Unbinder;
  * author：stepyen
  * description：
  */
-public abstract class BaseLoadFragment<P extends IPresenter> extends BaseFragment<P> {
+public abstract class BaseLoadFragment<P extends IPresenter> extends BaseFragment<P> implements ILoadView {
 
     protected Gloading.Holder mHolder;
     private View mView;
@@ -87,22 +88,22 @@ public abstract class BaseLoadFragment<P extends IPresenter> extends BaseFragmen
         showLoadFailed();
         onLoad();
     }
-
+    @Override
     public void showLoading() {
         initLoadingStatusViewIfNeed();
         mHolder.showLoading();
     }
-
+    @Override
     public void showLoadSuccess() {
         initLoadingStatusViewIfNeed();
         mHolder.showLoadSuccess();
     }
-
+    @Override
     public void showLoadFailed() {
         initLoadingStatusViewIfNeed();
         mHolder.showLoadFailed();
     }
-
+    @Override
     public void showEmpty() {
         initLoadingStatusViewIfNeed();
         mHolder.showEmpty();

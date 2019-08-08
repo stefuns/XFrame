@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.billy.android.loading.Gloading;
+import com.stepyen.xframe.mvp.ILoadView;
 import com.stepyen.xframe.mvp.IPresenter;
 import com.stepyen.xframe.widget.actionbar.TitleUtils;
 
@@ -17,7 +18,7 @@ import com.stepyen.xframe.widget.actionbar.TitleUtils;
  * author：stepyen
  * description：
  */
-public abstract class BaseLoadActivity<P extends IPresenter> extends BaseActivity<P> {
+public abstract class BaseLoadActivity<P extends IPresenter> extends BaseActivity<P> implements ILoadView {
     protected View mContentView;
     protected Gloading.Holder mHolder;
 
@@ -63,7 +64,7 @@ public abstract class BaseLoadActivity<P extends IPresenter> extends BaseActivit
             finish();
         });
     }
-
+    @Override
     public void showMessage(@NonNull String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
@@ -86,21 +87,25 @@ public abstract class BaseLoadActivity<P extends IPresenter> extends BaseActivit
         onLoad();
     }
 
+    @Override
     public void showLoading() {
         initLoadingStatusViewIfNeed();
         mHolder.showLoading();
     }
 
+    @Override
     public void showLoadSuccess() {
         initLoadingStatusViewIfNeed();
         mHolder.showLoadSuccess();
     }
 
+    @Override
     public void showLoadFailed() {
         initLoadingStatusViewIfNeed();
         mHolder.showLoadFailed();
     }
 
+    @Override
     public void showEmpty() {
         initLoadingStatusViewIfNeed();
         mHolder.showEmpty();
