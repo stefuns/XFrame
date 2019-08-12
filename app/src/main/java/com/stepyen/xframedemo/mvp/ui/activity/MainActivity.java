@@ -23,7 +23,9 @@ public class MainActivity extends BaseTestActivity {
         addView("测试图片框架Glide", v->{
             startActivity(new Intent(this, TestImageLoadActivity.class));
         });
-
+        addView("复用Presenter", v->{
+            startActivity(new Intent(this, TestReuseActivity.class));
+        });
 
     }
 }
