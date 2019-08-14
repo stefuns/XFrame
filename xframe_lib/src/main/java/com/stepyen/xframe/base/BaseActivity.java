@@ -55,6 +55,7 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     private Unbinder mUnbinder;
 
     protected ViewGroup mRootView;
+    protected Activity mActivity;
 
     @Inject
     @Nullable
@@ -84,6 +85,7 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mActivity = this;
         try {
             int layoutResID = getLayoutId();
             //如果initView返回0,框架则不会调用setContentView(),当然也不会 Bind ButterKnife
@@ -104,6 +106,7 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mActivity = null;
         if (mUnbinder != null && mUnbinder != Unbinder.EMPTY)
             mUnbinder.unbind();
         this.mUnbinder = null;
